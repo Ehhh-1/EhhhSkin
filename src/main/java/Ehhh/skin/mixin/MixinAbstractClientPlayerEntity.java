@@ -16,14 +16,13 @@ public class MixinAbstractClientPlayerEntity {
         AbstractClientPlayerEntity self = (AbstractClientPlayerEntity)(Object)this;
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.player == self && EhhhSkin.isSkinLoaded()) {
-            // 直接构造新皮肤纹理，使用细手臂模型
             SkinTextures customSkin = new SkinTextures(
-                    EhhhSkin.CUSTOM_SKIN,          // 自定义皮肤纹理
-                    null,                          // 纹理 URL
-                    null,                          // 披风纹理
-                    null,                          // 披风 URL
-                    SkinTextures.Model.SLIM,       // 模型：细手臂
-                    false                          // 安全标志
+                    EhhhSkin.getCurrentSkinTexture(),
+                    null,
+                    null,
+                    null,
+                    EhhhSkin.getCurrentModel(),
+                    false
             );
             cir.setReturnValue(customSkin);
         }
